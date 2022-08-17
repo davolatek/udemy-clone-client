@@ -49,7 +49,7 @@ const Provider = ({children}) =>{
             return response
         },
 
-        // 4XX, 5XX response codes are trigerred in the follwoing function
+        // 4XX, 5XX response codes are trigerred in the following function
         function(error){
             const res = error.response
 
@@ -72,6 +72,19 @@ const Provider = ({children}) =>{
             return Promise.reject(error)
         }
     )
+
+
+    useEffect(()=>{
+        const getCSRFToken = async () =>{
+            const {data} = await axios.get("/api/csrf-token")
+
+            console.log("CSRF", data.csrfToken)
+
+            axios.defaults.headers["X-CSRF-Token"] = data.csrfToken
+        }
+
+        getCSRFToken()
+    })
 
     return (
         <Context.Provider value={{state, dispatch}}>

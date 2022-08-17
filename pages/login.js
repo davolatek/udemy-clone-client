@@ -39,6 +39,8 @@ const Login = () => {
         email: user.email,
         password: user.password,
       });
+
+      console.log(data)
       dispatch({
         type: "LOGIN",
         payload: data,
@@ -52,7 +54,7 @@ const Login = () => {
 
       // redirect the user
 
-      router.push("/");
+      router.push("/user");
     } catch (err) {
       toast.error(err.response.data);
       setLoading(false);
