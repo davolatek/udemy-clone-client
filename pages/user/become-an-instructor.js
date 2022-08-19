@@ -19,7 +19,7 @@ const BecomeAnInstructor = () => {
 
   const becomeInstructor = () =>{
     setLoading(true)
-    axios.post("/api/make-instructor").then(res=>{
+    axios.post("/api/make-instructor",{userId: user._id}).then(res=>{
       window.location.href = res.data
     }).catch(err=>{
       console.log(err)
